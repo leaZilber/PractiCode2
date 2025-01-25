@@ -2,21 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Text.Json;
 using System.IO;
+
 namespace hw2
 {
-    public class HelperHtml
+    public class HtmlHelper
     {
-        private readonly static HelperHtml _instence;
-        public static HelperHtml Instence => _instence;
-        public string[] json1 { get; set; }
-        public string[] json2 { get; set; }
-        private HelperHtml()
+        private readonly static HtmlHelper _instance = new HtmlHelper();
+        public static HtmlHelper Instance => _instance;
+
+        public string[] HtmlTags { get; set; }
+        public string[] VoidHtmlTags { get; set; }
+
+        private HtmlHelper()
         {
-            json1 = JsonSerializer.Deserialize<string[]>(File.ReadAllText("files/HtmlTags.json")) ?? new string[0];
-            json2 = JsonSerializer.Deserialize<string[]>(File.ReadAllText("files/HtmlVoidTags.json")) ?? new string[0];
+            HtmlTags = JsonSerializer.Deserialize<string[]>(File.ReadAllText("files/HtmlTags.json")) ?? new string[0];
+            VoidHtmlTags = JsonSerializer.Deserialize<string[]>(File.ReadAllText("files/HtmlVoidTags.json")) ?? new string[0];
         }
     }
 }
